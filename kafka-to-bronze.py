@@ -1,6 +1,7 @@
 # Databricks notebook source
 class Bronze:
     def __init__(self):
+        self.base_data_dir = "***"
         self.BOOTSTRAP_SERVER = "***"
         self.JAAS_MODULE = "***"
         self.CLUSTER_API_KEY = "***"
@@ -10,7 +11,7 @@ class Bronze:
 
     def ingestFromKafka(self, startingTime=1):
         return (
-            spark.read.format("kafka")
+            spark.readStream.format("kafka")
             .option("kafka.bootstrap.servers", self.BOOTSTRAP_SERVER)
             .option("kafka.security.protocol", "SASL_SSL")
             .option("kafka.sasl.mechanism", "PLAIN")
